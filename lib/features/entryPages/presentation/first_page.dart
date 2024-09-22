@@ -3,8 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/app_theme.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/widgets/details_container_stack.dart';
-import 'package:serag/features/entryPages/presentation/widgets/row_options_container.dart';
+import 'package:serag/features/entryPages/presentation/widgets/first_page_widgets/details_container_stack.dart';
+import 'package:serag/features/entryPages/presentation/widgets/first_page_widgets/row_options_container.dart';
 import 'package:serag/features/entryPages/presentation/widgets/title_row.dart';
 
 class FirstPage extends StatelessWidget {

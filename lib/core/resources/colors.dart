@@ -10,6 +10,7 @@ class AppColors {
   static const Color lightGradientEnd = Color(0xff372527);
   static const Color lightTitle = Color(0xff5c3b13);
   static const Color lightTextTime = Color(0xffb99470);
+  static const Color lightShareContainer = Color(0xff7D6358);
 
 // Dark (night) theme :
   static const Color darkDialog = Color(0xff3F0D19);
@@ -22,6 +23,7 @@ class AppColors {
   static const Color darkGradientEnd = Color.fromARGB(255, 63, 63, 63);
   static const Color darkTitle = Color(0xffffc886);
   static const Color darkArrow = Color(0xfffefae0);
+  static const Color darkShareContainer = Color(0xff8D213B);
   //both :
   static const Color containerColor = Color(0xfffff8c7);
   static const Color whiteColor = Colors.white;

@@ -35,7 +35,7 @@ class DetailsContainerStack extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: -context.screenWidth * 0.045,
+          right:-context.screenWidth * 0.045,
           top: -context.screenHeight * 0.05,
           child: Image.asset(
             AppImages.getGroup(isDarkTheme),

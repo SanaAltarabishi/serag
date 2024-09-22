@@ -15,4 +15,6 @@ class AppStrings {
   static const String relieveANeed = 'قضاء حاجة ';
   static const String dawn = 'فجرية';
   static const String priority = 'ذات أولوية';
+  static const String share = 'مشاركة';
+  static const String add = 'إضافة';
 }
