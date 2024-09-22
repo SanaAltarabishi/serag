@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
@@ -101,7 +102,7 @@ class _SealFormContainerState extends State<SealFormContainer> {
                 color: AppColors.whiteColor,
                 fontWeight: FontWeight.w400,
                 fontSize: context.screenWidth * 0.05),
-          ),
+          ).animate().fade(duration: 0.3.seconds, delay: .1.seconds),
           SizedBox(
             height: context.screenHeight * 0.02,
           ),
@@ -112,7 +113,7 @@ class _SealFormContainerState extends State<SealFormContainer> {
                 setState(() {
                   selectedValue = newValue;
                 });
-              }),
+              }).animate().fade(duration: 0.5.seconds, delay: .2.seconds),
           SizedBox(
             height: context.screenHeight * 0.02,
           ),
@@ -124,26 +125,35 @@ class _SealFormContainerState extends State<SealFormContainer> {
               fontWeight: FontWeight.w400,
               fontSize: context.screenWidth * 0.05,
             ),
-          ),
+          ).animate().fade(duration: 0.7.seconds, delay: .3.seconds),
           SizedBox(
             height: context.screenHeight * 0.02,
           ),
           CustomDateRangePicker(
             onTap: () => _selectDateRange(context, widget.isDarkTheme),
             selectedDateRange: _selectedDateRange,
+          ).animate().fade(duration: 0.9.seconds, delay: .4.seconds),
+          SizedBox(
+            height: context.screenHeight * 0.015,
           ),
+          _buildCheckboxRow(context)
+              .animate()
+              .fade(duration: 1.1.seconds, delay: .5.seconds),
           SizedBox(
             height: context.screenHeight * 0.02,
           ),
-          _buildCheckboxRow(context),
-          SizedBox(
-            height: context.screenHeight * 0.02,
-          ),
-          ShareButton(widget: widget),
+          ShareButton(widget: widget)
+              .animate()
+              .fade(duration: 1.3.seconds, delay: .6.seconds),
           SizedBox(
             height: context.screenHeight * 0.04,
           ),
-          AddButton(widget: widget),
+          AddButton(widget: widget)
+              .animate()
+              .fade(duration: 1.5.seconds, delay: .7.seconds),
+          SizedBox(
+            height: context.screenHeight * 0.02,
+          )
         ],
       ),
     );

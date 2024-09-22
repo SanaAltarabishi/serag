@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/app_theme.dart';
-import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/card_seals.dart';
+import 'package:serag/core/utils/build_context_extensions.dart';import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/card_seals.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/custom_floating_action_button.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/seal_app_bar.dart';
+import 'package:serag/features/entryPages/presentation/widgets/custom_app_bar.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/seal_form_container.dart';
 
 class SealPage extends StatefulWidget {
@@ -39,7 +39,10 @@ class _SealPageState extends State<SealPage> {
                     SizedBox(
                       height: context.screenHeight * 0.02,
                     ),
-                    SealAppBar(isDarkTheme: isDarkTheme),
+                    CustomAppBar(
+                      isDarkTheme: isDarkTheme,
+                      text: AppStrings.seals,
+                    ),
                     SizedBox(
                       height: context.screenHeight * 0.02,
                     ),
@@ -62,7 +65,8 @@ class _SealPageState extends State<SealPage> {
                   ],
                 ),
               ),
-              _buildAnimatedContainer(context, isDarkTheme),
+              if (_isContainerVisible)
+                _buildAnimatedContainer(context, isDarkTheme),
             ],
           ),
         ),
@@ -93,7 +97,7 @@ class _SealPageState extends State<SealPage> {
       left: 0,
       right: 0,
       top: _isContainerVisible
-          ? context.screenHeight * 0.45
+          ? context.screenHeight * 0.4
           : context.screenHeight,
       child: SealFormContainer(
         isDarkTheme: isDarkTheme,
