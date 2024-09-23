@@ -24,3 +24,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+//! if the app already opened how to change the theme without the need to close the app?

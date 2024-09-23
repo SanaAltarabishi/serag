@@ -27,4 +27,7 @@ class AppImages {
   static String getFrill(bool isDarkTheme) {
     return isDarkTheme ? darkFrill : lightFrill;
   }
+
+  static const String counter = 'assets/images/counter.png';
+  static const String meeting = 'assets/images/meeting.png';
 }

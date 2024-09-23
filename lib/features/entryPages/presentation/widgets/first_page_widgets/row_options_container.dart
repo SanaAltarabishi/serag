@@ -6,6 +6,7 @@ import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 import 'package:serag/features/entryPages/presentation/seal_page.dart';
+import 'package:serag/features/entryPages/presentation/widgets/first_page_widgets/praise_dialog.dart';
 import 'package:serag/features/entryPages/presentation/widgets/option_container.dart';
 
 class RowOptionsContainer extends StatelessWidget {
@@ -31,7 +32,14 @@ class RowOptionsContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             OptionContainer(
-              onTap: () {},
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return PraiseDialog(isDarkTheme: isDarkTheme);
+                  },
+                );
+              },
               text: AppStrings.praise,
               image: AppImages.beads,
               isDarkTheme: isDarkTheme,
@@ -45,10 +53,12 @@ class RowOptionsContainer extends StatelessWidget {
             OptionContainer(
               onTap: () {
                 Navigator.push(
-                    context,
-                    PageTransition(
-                        child:  SealPage(),
-                        type: PageTransitionType.fade));
+                  context,
+                  PageTransition(
+                    child: const SealPage(),
+                    type: PageTransitionType.fade,
+                  ),
+                );
               },
               image: AppImages.series,
               text: AppStrings.seal,

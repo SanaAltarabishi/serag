@@ -17,4 +17,6 @@ class AppStrings {
   static const String priority = 'ذات أولوية';
   static const String share = 'مشاركة';
   static const String add = 'إضافة';
+  static const String individualPraise = 'سبحة';
+  static const String praiseSession = 'جلسة ذكر';
 }
