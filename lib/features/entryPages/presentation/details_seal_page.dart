@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
@@ -40,7 +41,7 @@ class DetailsSealPage extends StatelessWidget {
                       width: context.screenWidth * 0.8, // 310,
                       height: context.screenHeight * 0.095, //65,
                       decoration: BoxDecoration(
-                        color: AppColors.containerColor,
+                        color: AppColors.titleContainer,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
@@ -48,13 +49,15 @@ class DetailsSealPage extends StatelessWidget {
                           sealTitle,
                           style: TextStyle(
                             color: isDarkTheme
-                                ? AppColors.darkTitle
+                                ? AppColors.darkDialog
                                 : AppColors.lightTitle,
-                            fontSize: context.screenWidth * 0.065, //25,
+                            fontSize: context.screenHeight * 0.035, //25,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                      ),
+                      )
+                          .animate()
+                          .fade(duration: 0.2.seconds, delay: 0.15.seconds),
                     ),
                     Positioned(
                       right: -context.screenWidth * 0.08,
@@ -68,21 +71,21 @@ class DetailsSealPage extends StatelessWidget {
                     ),
                     Positioned(
                       right: context.screenWidth * 0.02, //8,
-                      top: context.screenHeight * 0.03, //20,
+                      top: context.screenHeight * 0.025, //20,
                       child: Text(
                         '${index + 1}',
                         style: TextStyle(
                           color: AppColors.containerColor,
                           fontWeight: FontWeight.w400,
-                          fontSize: context.screenWidth * 0.04, //17,
+                          fontSize: context.screenHeight * 0.025, //17,
                         ),
                       ),
                     ),
                   ],
                 ),
-              ),
+              ).animate().fade(duration: 0.2.seconds, delay: 0.1.seconds),
               SizedBox(
-                height: context.screenHeight * 0.02,
+                height: context.screenHeight * 0.04,
               ),
               Expanded(
                 child: GridView.builder(
@@ -91,25 +94,36 @@ class DetailsSealPage extends StatelessWidget {
                       crossAxisCount: 5),
                   itemBuilder: (context, gridindex) {
                     return Container(
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          color: AppColors.containerColor,
-                          borderRadius: BorderRadius.circular(10)),
+                        color: isDarkTheme
+                            ? AppColors.darkContainer
+                            : AppColors.containerColor,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 3,
+                            offset: Offset(-5, 5),
+                          ),
+                        ],
+                      ),
                       child: Center(
                         child: Text(
                           '${gridindex + 1}',
                           style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.w400,
-                              color: isDarkTheme
-                                  ? AppColors.darkTitle
-                                  : AppColors.lightTitle),
+                            fontSize: 25,
+                            fontWeight: FontWeight.w400,
+                            color: isDarkTheme
+                                ? AppColors.darkDialog
+                                : AppColors.lightTitle,
+                          ),
                         ),
                       ),
                     );
                   },
                 ),
-              )
+              ).animate().fade(duration: 0.4.seconds, delay: 0.2.seconds)
             ],
           ),
         ),

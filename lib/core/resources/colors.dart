@@ -24,7 +24,9 @@ class AppColors {
   static const Color darkTitle = Color(0xffffc886);
   static const Color darkArrow = Color(0xfffefae0);
   static const Color darkShareContainer = Color(0xff8D213B);
+  static const Color darkContainer = Color(0xffffb68d);
   //both :
   static const Color containerColor = Color(0xfffff8c7);
+  static const Color titleContainer = Color(0xffFEFAE0);
   static const Color whiteColor = Colors.white;
 }

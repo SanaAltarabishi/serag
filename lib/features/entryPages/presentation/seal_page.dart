@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/app_theme.dart';
-import 'package:serag/core/utils/build_context_extensions.dart';import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/card_seals.dart';
+import 'package:serag/core/utils/build_context_extensions.dart';
+import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/card_seals.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/custom_floating_action_button.dart';
 import 'package:serag/features/entryPages/presentation/widgets/custom_app_bar.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/seal_form_container.dart';
@@ -28,43 +30,50 @@ class _SealPageState extends State<SealPage> {
         child: SafeArea(
           child: Stack(
             children: [
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    _isContainerVisible = false;
-                  });
-                },
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: context.screenHeight * 0.02,
+              Column(
+                children: [
+                  SizedBox(
+                    height: context.screenHeight * 0.02,
+                  ),
+                  CustomAppBar(
+                    isDarkTheme: isDarkTheme,
+                    text: AppStrings.seals,
+                  ),
+                  SizedBox(
+                    height: context.screenHeight * 0.02,
+                  ),
+                  Flexible(
+                    child: ListView.builder(
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        return CardSeals(
+                          index: index,
+                          isDarkTheme: isDarkTheme,
+                        ).animate().scaleXY(
+                            duration: (0.3 * index).seconds,
+                            delay: (0.1 * index).seconds);
+                      },
                     ),
-                    CustomAppBar(
-                      isDarkTheme: isDarkTheme,
-                      text: AppStrings.seals,
-                    ),
-                    SizedBox(
-                      height: context.screenHeight * 0.02,
-                    ),
-                    Flexible(
-                      child: ListView.builder(
-                        itemCount: 4,
-                        itemBuilder: (context, index) {
-                          return CardSeals(
-                            index: index,
-                            isDarkTheme: isDarkTheme,
-                          ).animate().scaleXY(
-                              duration: (0.3 * index).seconds,
-                              delay: (0.1 * index).seconds);
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      height: context.screenHeight * 0.05,
-                    )
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: context.screenHeight * 0.05,
+                  )
+                ],
               ),
+              if (_isContainerVisible)
+                ModalBarrier(
+                  dismissible: true,
+                  color: isDarkTheme
+                      ? AppColors.darkGradientStart.withOpacity(0.3)
+                      : AppColors.lightGradientEnd.withOpacity(0.3),
+                  onDismiss: () {
+                    setState(
+                      () {
+                        _isContainerVisible = false;
+                      },
+                    );
+                  },
+                ),
               if (_isContainerVisible)
                 _buildAnimatedContainer(context, isDarkTheme),
             ],

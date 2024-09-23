@@ -24,6 +24,7 @@ class CustomDropDownField extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
         child: DropdownButtonFormField(
+          dropdownColor: AppColors.whiteColor,
           value: selectedValue,
           iconSize: 0,
           decoration: InputDecoration(
