@@ -3,9 +3,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
-import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/details_seal_page.dart';
+import 'package:serag/core/widgets/start_end_row.dart';
+import 'package:serag/features/entryPages/presentation/pages/details_seal_page.dart';
 
 class CardSeals extends StatelessWidget {
   final bool isDarkTheme;
@@ -95,63 +95,11 @@ class CardSeals extends StatelessWidget {
                     ? AppColors.darkDialog.withOpacity(0.5)
                     : AppColors.lightGradientEnd.withOpacity(0.5),
               ).animate().fade(duration: 0.5.seconds, delay: 0.2.seconds),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: context.screenWidth * 0.05),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          AppStrings.endTime,
-                          style: TextStyle(
-                            fontSize: context.screenWidth * 0.045,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          '3/4/2024', //from back
-                          style: TextStyle(
-                            color: AppColors.lightTextTime,
-                            fontSize: context.screenWidth * 0.035,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
-                    ),
-                    Flexible(
-                      child: Image.asset(
-                        AppImages.getFrill(isDarkTheme),
-                        height: context.screenHeight * 0.05,
-                        width: context.screenWidth * 0.11,
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          AppStrings.startTime,
-                          style: TextStyle(
-                            fontSize: context.screenWidth * 0.045,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          '3/3/2024', //from back
-                          style: TextStyle(
-                            color: AppColors.lightTextTime,
-                            fontSize: context.screenWidth * 0.035,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
-                ).animate().fade(duration: 0.7.seconds, delay: 0.3.seconds),
-              )
+              StartAndEndRow(
+                isDarkTheme: isDarkTheme,
+                startTime: '3/3/2024',
+                endTime: '3/3/2024',
+              ).animate().fade(duration: 0.7.seconds, delay: 0.3.seconds)
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/widgets/title_row.dart';
+import 'package:serag/core/widgets/title_row.dart';
 
 class CustomAppBar extends StatelessWidget {
   final bool isDarkTheme;

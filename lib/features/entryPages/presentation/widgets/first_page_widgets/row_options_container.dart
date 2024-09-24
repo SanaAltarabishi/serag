@@ -5,9 +5,9 @@ import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/seal_page.dart';
+import 'package:serag/features/entryPages/presentation/pages/seal_page.dart';
 import 'package:serag/features/entryPages/presentation/widgets/first_page_widgets/praise_dialog.dart';
-import 'package:serag/features/entryPages/presentation/widgets/option_container.dart';
+import 'package:serag/features/entryPages/presentation/widgets/first_page_widgets/option_container.dart';
 
 class RowOptionsContainer extends StatelessWidget {
   const RowOptionsContainer({
@@ -34,6 +34,9 @@ class RowOptionsContainer extends StatelessWidget {
             OptionContainer(
               onTap: () {
                 showDialog(
+                  barrierColor: isDarkTheme
+                      ? AppColors.darkGradientStart.withOpacity(0.2)
+                      : AppColors.lightGradientEnd.withOpacity(0.2),
                   context: context,
                   builder: (context) {
                     return PraiseDialog(isDarkTheme: isDarkTheme);

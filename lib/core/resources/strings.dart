@@ -19,4 +19,6 @@ class AppStrings {
   static const String add = 'إضافة';
   static const String individualPraise = 'سبحة';
   static const String praiseSession = 'جلسة ذكر';
+  static const String required = 'المفروض';
+  static const String residual = 'المنجز';
 }

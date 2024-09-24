@@ -3,7 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/app_theme.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/widgets/custom_app_bar.dart';
+import 'package:serag/core/widgets/custom_app_bar.dart';
 import 'package:serag/features/entryPages/presentation/widgets/details_seal_widget/container_title.dart';
 import 'package:serag/features/entryPages/presentation/widgets/details_seal_widget/sealing_part_container.dart';
 
@@ -39,7 +39,7 @@ class DetailsSealPage extends StatelessWidget {
                 index: index,
               ).animate().fade(duration: 0.2.seconds, delay: 0.1.seconds),
               SizedBox(
-                height: context.screenHeight * 0.04,
+                height: context.screenHeight * 0.05,
               ),
               Expanded(
                 child: GridView.builder(

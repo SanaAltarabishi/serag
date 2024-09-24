@@ -4,7 +4,6 @@ import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 
-
 class TitleContainer extends StatelessWidget {
   const TitleContainer({
     super.key,
@@ -34,29 +33,26 @@ class TitleContainer extends StatelessWidget {
               child: Text(
                 sealTitle,
                 style: TextStyle(
-                  color: isDarkTheme
-                      ? AppColors.darkDialog
-                      : AppColors.lightTitle,
+                  color:
+                      isDarkTheme ? AppColors.darkDialog : AppColors.lightTitle,
                   fontSize: context.screenHeight * 0.035, //25,
                   fontWeight: FontWeight.w400,
                 ),
               ),
-            )
-                .animate()
-                .fade(duration: 0.2.seconds, delay: 0.15.seconds),
+            ).animate().fade(duration: 0.2.seconds, delay: 0.15.seconds),
           ),
           Positioned(
             right: -context.screenWidth * 0.08,
             top: -context.screenHeight * 0.02, //-15,
             child: Image.asset(
               AppImages.getGroup(isDarkTheme),
-              width: context.screenWidth * 0.22,
               height: context.screenHeight * 0.136,
+              width: context.screenWidth * 0.25,
               fit: BoxFit.fill,
             ),
           ),
           Positioned(
-            right: context.screenWidth * 0.02, //8,
+            right: context.screenWidth * 0.03, //8,
             top: context.screenHeight * 0.025, //20,
             child: Text(
               '${index + 1}',

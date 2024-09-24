@@ -6,7 +6,7 @@ import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/theme_provider.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/first_page.dart';
+import 'package:serag/features/entryPages/presentation/pages/first_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

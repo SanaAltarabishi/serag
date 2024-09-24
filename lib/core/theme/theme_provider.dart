@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:serag/core/theme/app_theme.dart';
 
@@ -6,7 +8,11 @@ class ThemeProvider with ChangeNotifier {
   bool _isDarkTheme = false;
   ThemeData get currentTheme => _currentTheme;
   bool get isDarkTheme => _isDarkTheme;
-
+  Timer? _timer;
+  ThemeProvider() {
+    updateThemeBaseOnTime();
+    _startThemeUpdateTimer();
+  }
   void updateThemeBaseOnTime() {
     final hour = DateTime.now().hour;
     if (hour >= 6 && hour < 20) {
@@ -19,10 +25,22 @@ class ThemeProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void _startThemeUpdateTimer() {
+    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+      updateThemeBaseOnTime();
+    });
+  }
+
 // switch between light and dark :
   void toggleTheme() {
     _isDarkTheme = !_isDarkTheme;
     _currentTheme = _isDarkTheme ? AppTheme.darkTheme : AppTheme.lightTheme;
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:serag/core/theme/theme_provider.dart';
-import 'package:serag/features/entryPages/presentation/splash_screen.dart';
+import 'package:serag/features/entryPages/presentation/pages/splash_screen.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -24,4 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-//! if the app already opened how to change the theme without the need to close the app?

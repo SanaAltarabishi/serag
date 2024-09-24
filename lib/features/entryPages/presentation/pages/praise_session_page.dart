@@ -4,23 +4,62 @@ import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/app_theme.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/card_seals.dart';
+import 'package:serag/core/widgets/custom_app_bar.dart';
+import 'package:serag/features/entryPages/models/praiseSession_model.dart';
+import 'package:serag/features/entryPages/presentation/widgets/praise_session/praise_card.dart';
+import 'package:serag/features/entryPages/presentation/widgets/praise_session/praise_form_container.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/custom_floating_action_button.dart';
-import 'package:serag/features/entryPages/presentation/widgets/custom_app_bar.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/seal_form_container.dart';
 
-class SealPage extends StatefulWidget {
-  const SealPage({super.key});
+class PraiseSession extends StatefulWidget {
+  const PraiseSession({super.key});
 
   @override
-  State<SealPage> createState() => _SealPageState();
+  State<PraiseSession> createState() => _PraiseSessionState();
 }
 
-class _SealPageState extends State<SealPage> {
+class _PraiseSessionState extends State<PraiseSession> {
   bool _isContainerVisible = false;
 
   @override
   Widget build(BuildContext context) {
+    List<PraiseSessionModel> praise = [
+      PraiseSessionModel(
+        title: 'صلاة عالنبي ',
+        startTime: '15/1/2020',
+        endTime: '19/1/2020',
+        required: 10000,
+        residual: 200,
+      ),
+      PraiseSessionModel(
+        title: 'استغفار',
+        startTime: '15/1/2020',
+        endTime: '19/1/2020',
+        required: 10000,
+        residual: 200,
+      ),
+      PraiseSessionModel(
+        title: 'حوقلة',
+        startTime: '15/1/2020',
+        endTime: '21/1/2020',
+        required: 10000,
+        residual: 200,
+      ),
+      PraiseSessionModel(
+        title: 'استغفار',
+        startTime: '15/1/2020',
+        endTime: '19/1/2020',
+        required: 10000,
+        residual: 200,
+      ),
+      PraiseSessionModel(
+        title: 'استغفار',
+        startTime: '15/1/2020',
+        endTime: '30/1/2020',
+        required: 10000,
+        residual: 200,
+      ),
+    ];
+
     final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
       body: Container(
@@ -37,21 +76,23 @@ class _SealPageState extends State<SealPage> {
                   ),
                   CustomAppBar(
                     isDarkTheme: isDarkTheme,
-                    text: AppStrings.seals,
+                    text: AppStrings.praiseSession,
                   ),
                   SizedBox(
-                    height: context.screenHeight * 0.02,
+                    height: context.screenHeight * 0.01,
                   ),
-                  Flexible(
+                  Expanded(
                     child: ListView.builder(
-                      itemCount: 4,
+                      itemCount: praise.length,
                       itemBuilder: (context, index) {
-                        return CardSeals(
-                          index: index,
+                        return PraiseCard(
                           isDarkTheme: isDarkTheme,
+                          index: index,
+                          praise: praise,
                         ).animate().scaleXY(
-                            duration: (0.3 * index).seconds,
-                            delay: (0.1 * index).seconds);
+                              duration: (0.3 * index).seconds,
+                              delay: (0.1 * index).seconds,
+                            );
                       },
                     ),
                   ),
@@ -67,11 +108,9 @@ class _SealPageState extends State<SealPage> {
                       ? AppColors.darkGradientStart.withOpacity(0.3)
                       : AppColors.lightGradientEnd.withOpacity(0.3),
                   onDismiss: () {
-                    setState(
-                      () {
-                        _isContainerVisible = false;
-                      },
-                    );
+                    setState(() {
+                      _isContainerVisible = false;
+                    });
                   },
                 ),
               if (_isContainerVisible)
@@ -108,7 +147,7 @@ class _SealPageState extends State<SealPage> {
       top: _isContainerVisible
           ? context.screenHeight * 0.4
           : context.screenHeight,
-      child: SealFormContainer(
+      child: PraiseFormContainer(
         isDarkTheme: isDarkTheme,
       ),
     );
