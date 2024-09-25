@@ -4,6 +4,7 @@ import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
+import 'package:serag/features/entryPages/presentation/pages/individual_praise_page.dart';
 import 'package:serag/features/entryPages/presentation/pages/praise_session_page.dart';
 
 class PraiseDialog extends StatelessWidget {
@@ -28,27 +29,36 @@ class PraiseDialog extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-              width: context.screenWidth * 0.3,
-              height: context.screenHeight * 0.065,
-              decoration: BoxDecoration(
-                color:
-                    isDarkTheme ? AppColors.darkDialog : AppColors.lightTitle,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    AppStrings.individualPraise,
-                    style: TextStyle(
-                      fontSize: context.screenWidth * 0.04, //20,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.containerColor,
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    PageTransition(
+                        child: const IndividualPraisePage(),
+                        type: PageTransitionType.fade));
+              },
+              child: Container(
+                width: context.screenWidth * 0.3,
+                height: context.screenHeight * 0.065,
+                decoration: BoxDecoration(
+                  color:
+                      isDarkTheme ? AppColors.darkDialog : AppColors.lightTitle,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      AppStrings.individualPraise,
+                      style: TextStyle(
+                        fontSize: context.screenWidth * 0.04, //20,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.containerColor,
+                      ),
                     ),
-                  ),
-                  Flexible(child: Image.asset(AppImages.counter)),
-                ],
+                    Flexible(child: Image.asset(AppImages.counter)),
+                  ],
+                ),
               ),
             ),
             InkWell(

@@ -30,4 +30,6 @@ class AppImages {
 
   static const String counter = 'assets/images/counter.png';
   static const String meeting = 'assets/images/meeting.png';
+  static const String mandala = 'assets/images/mandala.png';
+  static const String employee = 'assets/images/employee.png';
 }

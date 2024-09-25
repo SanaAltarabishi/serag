@@ -24,8 +24,8 @@ class PraiseCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(5),
       margin: EdgeInsets.symmetric(
-        horizontal: context.screenWidth * 0.06,
-        vertical: context.screenHeight * 0.015,
+        vertical: context.screenHeight * 0.02,
+          horizontal: context.screenWidth * 0.04,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
