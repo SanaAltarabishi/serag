@@ -32,4 +32,9 @@ class AppImages {
   static const String meeting = 'assets/images/meeting.png';
   static const String mandala = 'assets/images/mandala.png';
   static const String employee = 'assets/images/employee.png';
+  static const String lightFrame = 'assets/images/lightFrame.png';
+  static const String darkFrame = 'assets/images/darkFrame.png';
+  static String getFrame(bool isDarkTheme) {
+    return isDarkTheme ? darkFrame : lightFrame;
+  }
 }

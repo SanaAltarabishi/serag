@@ -25,9 +25,33 @@ class ThemeProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  bool _isInTransitionPeriod(int hour, int minute) {
+    if ((hour == 5 && minute >= 50) || (hour == 6 && minute <= 30)) {
+      return true;
+    }
+    if ((hour == 19 && minute >= 50) || (hour == 20 && minute <= 30)) {
+      return true;
+    }
+    return false;
+  }
+
   void _startThemeUpdateTimer() {
-    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+    final now = DateTime.now();
+    final currentHour = now.hour;
+    final currentMinute = now.minute;
+
+    if (_isInTransitionPeriod(currentHour, currentMinute)) {
       updateThemeBaseOnTime();
+    }
+
+    _timer = Timer.periodic(const Duration(minutes: 10), (timer) {
+      final now = DateTime.now();
+      final currentHour = now.hour;
+      final currentMinute = now.minute;
+
+      if (_isInTransitionPeriod(currentHour, currentMinute)) {
+        updateThemeBaseOnTime();
+      }
     });
   }
 

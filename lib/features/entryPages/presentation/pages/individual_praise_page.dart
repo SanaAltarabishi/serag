@@ -16,12 +16,11 @@ class IndividualPraisePage extends StatefulWidget {
   _IndividualPraisePageState createState() => _IndividualPraisePageState();
 }
 
-List<int> indexList = [10, 8, 5, 12, 4, 50, 6, 9, 8, 9];//! change the angle
+List<int> indexList = [10, 8, 5, 12, 4, 50, 6, 9, 8, 9]; //! change the angle
 List<String> praises = [
   'سبحان الله',
   'استغفر الله',
   'لا اله الا الله',
-  'صل الله على سيدنا محمد',
 ];
 
 class _IndividualPraisePageState extends State<IndividualPraisePage> {
@@ -37,6 +36,7 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
   @override
   void initState() {
     super.initState();
+    selectedPraise = praises[currentPageIndex];
     _pageController =
         PageController(initialPage: currentPageIndex, viewportFraction: 0.8);
   }
@@ -72,12 +72,18 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
                     text: AppStrings.individualPraise,
                   ),
                   remaining == 0
-                      ? Text('')
+                      ? SizedBox(
+                          height: 35,
+                        )
                       : _buildTargetContainer(isDarkTheme),
                   SizedBox(
                     height: context.screenHeight * 0.01,
                   ),
-                  remaining == 0 ? Text('') : _buildRemainingContainer(),
+                  remaining == 0
+                      ? SizedBox(
+                          height: 24,
+                        )
+                      : _buildRemainingContainer(),
                   SizedBox(
                     height: context.screenHeight * 0.02,
                   ),
@@ -85,9 +91,14 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
                       ? _buildPraiseSelectionPageView(isDarkTheme)
                       : Center(
                           child: _buildSelectedPraiseContainer(isDarkTheme)),
+
                   SizedBox(
                     height: context.screenHeight * 0.04,
-                  ),
+                  ), // remaining == 0
+                  //     ? SizedBox(
+                  //         height: 30,
+                  //       )
+                  //     : Center(child: Image.asset(AppImages.getFrame(isDarkTheme))),
                   GestureDetector(
                       onTap: () {
                         if (remaining > 0) {
@@ -125,6 +136,7 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w400,
+              color: Colors.black,
             ),
           ),
         ),
@@ -145,7 +157,13 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
               borderRadius: BorderRadius.circular(20),
               color: AppColors.containerColor,
             ),
-            child: Center(child: Text('target :$topIndexCont')),
+            child: Center(
+                child: Text(
+              'target :$topIndexCont',
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            )),
           ),
           Positioned(
             right: -10,
@@ -162,9 +180,10 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
             child: Text(
               'الهدف',
               style: TextStyle(
-                  fontSize: 7,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.containerColor),
+                fontSize: 7,
+                fontWeight: FontWeight.w400,
+                color: AppColors.containerColor,
+              ),
             ),
           )
         ],
@@ -200,7 +219,7 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
               child: Container(
                 width: 280,
                 height: 170,
-                margin: const EdgeInsets.symmetric(horizontal: 10),
+                // margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                     color: containerColor,
                     borderRadius: BorderRadius.circular(18)),
@@ -226,9 +245,9 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
   Widget _buildSelectedPraiseContainer(bool isDarkTheme) {
     return Container(
       padding: EdgeInsets.all(16),
-      width: 280,
+      width: 310,
       height: 170,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      //  margin: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
           color:
               isDarkTheme ? AppColors.darkDialog : AppColors.lightGradientEnd,
@@ -252,6 +271,7 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
       context: context,
       builder: (context) {
         return Dialog(
+          backgroundColor: AppColors.whiteColor,
           child: SizedBox(
             width: 200,
             height: 200,
@@ -277,6 +297,8 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
     );
     setState(() {
       topIndex = 0;
+      currentPageIndex = 1;
+      selectedPraise = praises[currentPageIndex];
     });
   }
 
@@ -334,6 +356,13 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
             ),
           ),
         ),
+        Positioned(
+            top: context.screenWidth * 0.015,
+            child: Icon(
+              Icons.arrow_drop_down,
+              size: context.screenWidth * 0.08,
+              color: Colors.black,
+            )),
         Align(
           alignment: Alignment.center,
           child: Container(
@@ -375,10 +404,16 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
             ),
             child: Center(
               child: (remaining == 0)
-                  ? const Icon(Icons.rotate_left_rounded)
+                  ? const Icon(
+                      Icons.rotate_left_rounded,
+                      color: Colors.black,
+                    )
                   : Text(
                       'انقر',
-                      style: TextStyle(fontSize: context.screenWidth * 0.04),
+                      style: TextStyle(
+                        fontSize: context.screenWidth * 0.04,
+                        color: Colors.black,
+                      ),
                     ),
             ),
           ),
@@ -446,22 +481,29 @@ class CirclePainter extends CustomPainter {
 
     final paint = Paint()..color = containerColor;
 
+    // Draw each number at its position
     for (int index = 0; index < containerCount; index++) {
+      // Compute the angle for this index, adjusted by scrollPosition
       final double angle =
           (2 * math.pi * index) / containerCount + scrollPosition;
 
+      // Calculate the position of the item along the circle's circumference
       final double itemX = radius * math.cos(angle);
       final double itemY = radius * math.sin(angle);
+      final Offset itemCenter = center.translate(itemX, itemY);
 
-      final itemCenter = center.translate(itemX, itemY);
-
-      Rect.fromCircle(
-        center: itemCenter,
-        radius: containerRadius,
-      );
-
+      // Draw the circle background if necessary (currently transparent)
       canvas.drawCircle(itemCenter, containerRadius, paint);
 
+      // Save canvas state before rotation
+      canvas.save();
+
+      // Move the canvas to the text position and rotate it inversely to the angle
+      canvas.translate(itemCenter.dx, itemCenter.dy);
+      canvas.rotate(
+          angle + math.pi / 2); // Rotate to face inward towards the center
+
+      // Draw the text at the translated and rotated position
       final textPainter = TextPainter(
         text: TextSpan(
           text: '${indexList[index]}',
@@ -476,11 +518,11 @@ class CirclePainter extends CustomPainter {
       );
 
       textPainter.layout();
-      final textOffset = Offset(
-        itemCenter.dx - textPainter.width / 2,
-        itemCenter.dy - textPainter.height / 2,
-      );
-      textPainter.paint(canvas, textOffset);
+      textPainter.paint(
+          canvas, Offset(-textPainter.width / 2, -textPainter.height / 2));
+
+      // Restore the canvas state after drawing the text
+      canvas.restore();
     }
   }
 
