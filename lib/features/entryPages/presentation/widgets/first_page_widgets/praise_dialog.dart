@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/pages/individual_praise_page.dart';
-import 'package:serag/features/entryPages/presentation/pages/praise_session_page.dart';
 
 class PraiseDialog extends StatelessWidget {
   const PraiseDialog({
@@ -31,11 +29,12 @@ class PraiseDialog extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(
-                    context,
-                    PageTransition(
-                        child: const IndividualPraisePage(),
-                        type: PageTransitionType.fade));
+                // Navigator.push(
+                //     context,
+                //     PageTransition(
+                //         child: const IndividualPraisePage(),
+                //         type: PageTransitionType.fade));
+                context.push('/individualPraise');
               },
               child: Container(
                 width: context.screenWidth * 0.3,
@@ -63,13 +62,14 @@ class PraiseDialog extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    child: const PraiseSession(),
-                    type: PageTransitionType.fade,
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   PageTransition(
+                //     child: const PraiseSession(),
+                //     type: PageTransitionType.fade,
+                //   ),
+                // );
+                context.push('/praiseSession');
               },
               child: Container(
                 width: context.screenWidth * 0.3,

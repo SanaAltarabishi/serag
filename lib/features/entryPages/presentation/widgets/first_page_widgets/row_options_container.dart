@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/pages/seal_page.dart';
 import 'package:serag/features/entryPages/presentation/widgets/first_page_widgets/praise_dialog.dart';
 import 'package:serag/features/entryPages/presentation/widgets/first_page_widgets/option_container.dart';
 
@@ -55,13 +54,14 @@ class RowOptionsContainer extends StatelessWidget {
             ),
             OptionContainer(
               onTap: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    child: const SealPage(),
-                    type: PageTransitionType.fade,
-                  ),
-                );
+                context.push('/seal');
+                // Navigator.push(
+                //   context,
+                //   PageTransition(
+                //     child: const SealPage(),
+                //     type: PageTransitionType.fade,
+                //   ),
+                // );
               },
               image: AppImages.series,
               text: AppStrings.seal,

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/theme_provider.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/pages/first_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -38,10 +37,11 @@ class _SplashScreenState extends State<SplashScreen>
 
   void _navigateToNextScreen() {
     Future.delayed(const Duration(seconds: 1));
-    Navigator.pushReplacement(
-        context,
-        PageTransition(
-            child: const FirstPage(), type: PageTransitionType.fade));
+    // Navigator.pushReplacement(
+    //     context,
+    //     PageTransition(
+    //         child: const FirstPage(), type: PageTransitionType.fade));
+    context.pushReplacement('/first');
   }
 
   @override

@@ -107,14 +107,9 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
                         selectedPraise: selectedPraise,
                       ),
                     ),
-
               SizedBox(
                 height: context.screenHeight * 0.03,
-              ), // remaining == 0
-              //     ? SizedBox(
-              //         height: 30,
-              //       )
-              //     : Center(child: Image.asset(AppImages.getFrame(isDarkTheme))),
+              ),
               StackWheel(
                 indexList: indexList,
                 scrollPosition: scrollPosition,
@@ -147,39 +142,6 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
                   }
                 },
               )
-              // StackWheel(
-              //   indexList: indexList,
-              //   scrollPosition: scrollPosition,
-              //   remaining: remaining,
-              //   valueListenable: start,
-              //   onTap: () {
-              //     if (remaining > 0) {
-              //       setState(
-              //         () {
-              //           remaining--;
-              //           if (remaining == 0) {
-              //             _showCompletedDialog(context);
-              //           }
-              //         },
-              //       );
-              //     }
-              //   },
-              //   onVerticalDragStart: (details) {
-              //     if (remaining == 0) {
-              //       _startScroll();
-              //     } else {
-              //       start.value = !start.value;
-              //     }
-              //   },
-              //   onHorizontalDragStart: (details) {
-              //     if (remaining == 0) {
-              //       _startScroll();
-              //     } else {
-              //       start.value = !start.value;
-              //     }
-              //   },
-              // )
-              // _buildStackWheel()),
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:serag/core/navigation/app_router.dart';
 import 'package:serag/core/theme/theme_provider.dart';
-import 'package:serag/features/entryPages/presentation/pages/splash_screen.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -16,11 +16,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: themeProvider.currentTheme,
       themeMode: ThemeMode.system, //! ?
-      home: const SplashScreen(),
+      routerDelegate: AppRouter.router.routerDelegate,
+      routeInformationParser: AppRouter.router.routeInformationParser,
+      routeInformationProvider: AppRouter.router.routeInformationProvider,
+      // home: const SplashScreen(),
     );
   }
 }

@@ -10,14 +10,14 @@ import 'package:serag/features/entryPages/presentation/widgets/praise_session/pr
 import 'package:serag/features/entryPages/presentation/widgets/praise_session/praise_form_container.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/custom_floating_action_button.dart';
 
-class PraiseSession extends StatefulWidget {
-  const PraiseSession({super.key});
+class PraiseSessionPage extends StatefulWidget {
+  const PraiseSessionPage({super.key});
 
   @override
-  State<PraiseSession> createState() => _PraiseSessionState();
+  State<PraiseSessionPage> createState() => _PraiseSessionPageState();
 }
 
-class _PraiseSessionState extends State<PraiseSession> {
+class _PraiseSessionPageState extends State<PraiseSessionPage> {
   bool _isContainerVisible = false;
 
   @override

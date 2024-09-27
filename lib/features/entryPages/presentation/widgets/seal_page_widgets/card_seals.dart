@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:go_router/go_router.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 import 'package:serag/core/widgets/start_end_row.dart';
-import 'package:serag/features/entryPages/presentation/pages/details_seal_page.dart';
 
 class CardSeals extends StatelessWidget {
   final bool isDarkTheme;
@@ -21,15 +20,19 @@ class CardSeals extends StatelessWidget {
     final String sealTitle = 'ختمة بنية الشفاء ';
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          PageTransition(
-            child: DetailsSealPage(
-              index: index,
-              sealTitle: sealTitle,
-            ),
-            type: PageTransitionType.fade,
-          ),
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     child: DetailsSealPage(
+        //       index: index,
+        //       sealTitle: sealTitle,
+        //     ),
+        //     type: PageTransitionType.fade,
+        //   ),
+        // );
+        context.push(
+          '/details/$index',
+          extra: sealTitle,
         );
       },
       child: Container(
