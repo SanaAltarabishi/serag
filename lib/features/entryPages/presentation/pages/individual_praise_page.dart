@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:serag/core/resources/colors.dart';
-import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/app_theme.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 import 'package:serag/core/widgets/custom_app_bar.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/completed_dialog.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/praiseSelectionPageView.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/remainingContainer.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/selectedPraiseContainer.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/stackWheel.dart';
 import 'dart:async';
 import 'dart:math' as math;
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/targetContainer.dart';
 
 class IndividualPraisePage extends StatefulWidget {
   const IndividualPraisePage({super.key});
@@ -16,7 +19,7 @@ class IndividualPraisePage extends StatefulWidget {
   _IndividualPraisePageState createState() => _IndividualPraisePageState();
 }
 
-List<int> indexList = [10, 8, 5, 12, 4, 50, 6, 9, 8, 9]; //! change the angle
+List<int> indexList = [10, 8, 5, 12, 4, 50, 6, 9, 8, 9];
 List<String> praises = [
   'سبحان الله',
   'استغفر الله',
@@ -57,209 +60,127 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
           gradient: AppTheme.getBackgroundGradient(isDarkTheme),
         ),
         child: SafeArea(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: context.screenHeight),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  SizedBox(
-                    height: context.screenHeight * 0.02,
-                  ),
-                  CustomAppBar(
-                    isDarkTheme: isDarkTheme,
-                    text: AppStrings.individualPraise,
-                  ),
-                  remaining == 0
-                      ? SizedBox(
-                          height: 35,
-                        )
-                      : _buildTargetContainer(isDarkTheme),
-                  SizedBox(
-                    height: context.screenHeight * 0.01,
-                  ),
-                  remaining == 0
-                      ? SizedBox(
-                          height: 24,
-                        )
-                      : _buildRemainingContainer(),
-                  SizedBox(
-                    height: context.screenHeight * 0.02,
-                  ),
-                  remaining == 0
-                      ? _buildPraiseSelectionPageView(isDarkTheme)
-                      : Center(
-                          child: _buildSelectedPraiseContainer(isDarkTheme)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              CustomAppBar(
+                isDarkTheme: isDarkTheme,
+                text: AppStrings.individualPraise,
+              ),
+              remaining == 0
+                  ? SizedBox(
+                      height: context.screenHeight * 0.042,
+                    )
+                  : TargetContainer(
+                      isDarkTheme: isDarkTheme,
+                      topIndexCont: topIndexCont,
+                    ),
+              SizedBox(
+                height: context.screenHeight * 0.01,
+              ),
+              remaining == 0
+                  ? SizedBox(
+                      height: context.screenHeight * 0.04,
+                    )
+                  : RemainingContainer(remaining: remaining),
+              SizedBox(
+                height: context.screenHeight * 0.02,
+              ),
+              remaining == 0
+                  ? PraiseSelectionPageView(
+                      isDarkTheme: isDarkTheme,
+                      praises: praises,
+                      currentPageIndex: currentPageIndex,
+                      onPageChanged: (value) {
+                        setState(() {
+                          selectedPraise = praises[value];
+                          currentPageIndex = value;
+                        });
+                      },
+                    )
+                  : Center(
+                      child: SelectedPraiseContainer(
+                        isDarkTheme: isDarkTheme,
+                        selectedPraise: selectedPraise,
+                      ),
+                    ),
 
-                  SizedBox(
-                    height: context.screenHeight * 0.04,
-                  ), // remaining == 0
-                  //     ? SizedBox(
-                  //         height: 30,
-                  //       )
-                  //     : Center(child: Image.asset(AppImages.getFrame(isDarkTheme))),
-                  GestureDetector(
-                      onTap: () {
-                        if (remaining > 0) {
-                          setState(() {
-                            remaining--;
-                            if (remaining == 0) {
-                              _showCompletedDialog(context);
-                            }
-                          });
+              SizedBox(
+                height: context.screenHeight * 0.03,
+              ), // remaining == 0
+              //     ? SizedBox(
+              //         height: 30,
+              //       )
+              //     : Center(child: Image.asset(AppImages.getFrame(isDarkTheme))),
+              StackWheel(
+                indexList: indexList,
+                scrollPosition: scrollPosition,
+                remaining: remaining,
+                valueListenable: start,
+                onVerticalDragStart: (details) {
+                  if (remaining == 0) {
+                    _startScroll();
+                  } else {
+                    start.value = !start.value;
+                  }
+                },
+                onHorizontalDragStart: (details) {
+                  if (remaining == 0) {
+                    _startScroll();
+                  } else {
+                    start.value = !start.value;
+                  }
+                },
+                onTap: () {
+                  if (remaining > 0) {
+                    setState(
+                      () {
+                        remaining--;
+                        if (remaining == 0) {
+                          _showCompletedDialog(context);
                         }
                       },
-                      child: _buildStackWheel()),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRemainingContainer() {
-    return Padding(
-      padding: const EdgeInsets.only(right: 10.0),
-      child: Container(
-        width: 112,
-        height: 24,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: AppColors.containerColor,
-        ),
-        child: Center(
-          child: Text(
-            '$remaining المتبقي',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-              color: Colors.black,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTargetContainer(bool isDarkTheme) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 10.0),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Container(
-            width: 150,
-            height: 35,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: AppColors.containerColor,
-            ),
-            child: Center(
-                child: Text(
-              'target :$topIndexCont',
-              style: TextStyle(
-                color: Colors.black,
-              ),
-            )),
-          ),
-          Positioned(
-            right: -10,
-            top: -8,
-            child: Image.asset(
-              AppImages.getGroup(isDarkTheme),
-              width: 50,
-              height: 50,
-            ),
-          ),
-          Positioned(
-            right: 5,
-            top: 10,
-            child: Text(
-              'الهدف',
-              style: TextStyle(
-                fontSize: 7,
-                fontWeight: FontWeight.w400,
-                color: AppColors.containerColor,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPraiseSelectionPageView(bool isDarkTheme) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return SizedBox(
-        height: 170,
-        child: PageView.builder(
-          controller: _pageController,
-          scrollDirection: Axis.horizontal,
-          itemCount: praises.length,
-          onPageChanged: (value) {
-            setState(() {
-              selectedPraise = praises[value];
-              currentPageIndex = value;
-            });
-          },
-          itemBuilder: (context, index) {
-            double scale = (currentPageIndex == index) ? 1 : 0.9;
-            Color containerColor = (currentPageIndex == index)
-                ? (isDarkTheme
-                    ? AppColors.darkDialog
-                    : AppColors.lightGradientEnd)
-                : (isDarkTheme
-                    ? AppColors.darkDialog.withOpacity(0.5)
-                    : AppColors.lightShareContainer);
-            return Transform.scale(
-              scale: scale,
-              child: Container(
-                width: 280,
-                height: 170,
-                // margin: const EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                    color: containerColor,
-                    borderRadius: BorderRadius.circular(18)),
-                child: Center(
-                  child: Text(
-                    praises[index],
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 30,
-                      color: AppColors.whiteColor,
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-      );
-    });
-  }
-
-  Widget _buildSelectedPraiseContainer(bool isDarkTheme) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      width: 310,
-      height: 170,
-      //  margin: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-          color:
-              isDarkTheme ? AppColors.darkDialog : AppColors.lightGradientEnd,
-          borderRadius: BorderRadius.circular(18)),
-      child: Center(
-        child: Text(
-          selectedPraise,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: 30,
-            color: AppColors.whiteColor,
+                    );
+                  }
+                },
+              )
+              // StackWheel(
+              //   indexList: indexList,
+              //   scrollPosition: scrollPosition,
+              //   remaining: remaining,
+              //   valueListenable: start,
+              //   onTap: () {
+              //     if (remaining > 0) {
+              //       setState(
+              //         () {
+              //           remaining--;
+              //           if (remaining == 0) {
+              //             _showCompletedDialog(context);
+              //           }
+              //         },
+              //       );
+              //     }
+              //   },
+              //   onVerticalDragStart: (details) {
+              //     if (remaining == 0) {
+              //       _startScroll();
+              //     } else {
+              //       start.value = !start.value;
+              //     }
+              //   },
+              //   onHorizontalDragStart: (details) {
+              //     if (remaining == 0) {
+              //       _startScroll();
+              //     } else {
+              //       start.value = !start.value;
+              //     }
+              //   },
+              // )
+              // _buildStackWheel()),
+            ],
           ),
         ),
       ),
@@ -270,29 +191,7 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
     showDialog(
       context: context,
       builder: (context) {
-        return Dialog(
-          backgroundColor: AppColors.whiteColor,
-          child: SizedBox(
-            width: 200,
-            height: 200,
-            child: Center(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  AppImages.employee,
-                ),
-                const Text(
-                  'تم انجاز الجلسة بنجاح !',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black),
-                ),
-              ],
-            )),
-          ),
-        );
+        return const CompletedDialog();
       },
     );
     setState(() {
@@ -300,126 +199,6 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
       currentPageIndex = 1;
       selectedPraise = praises[currentPageIndex];
     });
-  }
-
-  Widget _buildStackWheel() {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        GestureDetector(
-          onVerticalDragStart: (details) {
-            if (remaining == 0) {
-              _startScroll();
-            } else {
-              start.value = !start.value;
-            }
-          },
-          onHorizontalDragStart: (details) {
-            if (remaining == 0) {
-              _startScroll();
-            } else {
-              start.value = !start.value;
-            }
-          },
-          child: Align(
-            alignment: Alignment.center,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Color(0xffFFF8C7),
-                shape: BoxShape.circle,
-              ),
-              margin: EdgeInsets.all(context.screenWidth * 0.05),
-              width: context.screenWidth * 0.85,
-              height: context.screenWidth * 0.85,
-              child: ValueListenableBuilder(
-                valueListenable: start,
-                builder: (context, started, _) {
-                  return CustomPaint(
-                    painter: CirclePainter(
-                      containerCount: indexList.length,
-                      containerColor: Colors.transparent,
-                      containerRadius: // containerSize
-                          context.screenWidth * 0.1,
-                      containerTextSize: context.screenWidth * 0.04,
-                      scrollPosition: scrollPosition,
-                      circleSize: context.screenWidth * 0.85,
-                    ),
-                  )
-                      .animate(
-                        target: started ? 1 : 0,
-                        onPlay: (controller) => controller.reverse(),
-                        onComplete: (controller) => debugPrint('complet'),
-                      )
-                      .shake(hz: 3);
-                },
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-            top: context.screenWidth * 0.015,
-            child: Icon(
-              Icons.arrow_drop_down,
-              size: context.screenWidth * 0.08,
-              color: Colors.black,
-            )),
-        Align(
-          alignment: Alignment.center,
-          child: Container(
-            width: context.screenWidth * 0.65, //innerContainerSize * 65,
-            height: context.screenWidth * 0.65, // innerContainerSize * 65,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 216, 194, 169),
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: Container(
-                width: context.screenWidth * 0.5,
-                height: context.screenWidth * 0.5,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(AppImages.mandala),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.center,
-          child: Container(
-            width: // innerContainerSize
-                context.screenWidth * 0.12,
-            height: context.screenWidth * 0.12,
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black38,
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(-2, -2))
-              ],
-              color: Color(0xffFFF8C7),
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: (remaining == 0)
-                  ? const Icon(
-                      Icons.rotate_left_rounded,
-                      color: Colors.black,
-                    )
-                  : Text(
-                      'انقر',
-                      style: TextStyle(
-                        fontSize: context.screenWidth * 0.04,
-                        color: Colors.black,
-                      ),
-                    ),
-            ),
-          ),
-        ),
-      ],
-    );
   }
 
   void _startScroll() {
@@ -454,80 +233,5 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
         }
       });
     });
-  }
-}
-
-class CirclePainter extends CustomPainter {
-  final int containerCount;
-  final Color containerColor;
-  final double containerRadius;
-  final double containerTextSize;
-  final double scrollPosition;
-  final double circleSize;
-
-  CirclePainter({
-    required this.containerCount,
-    required this.containerColor,
-    required this.containerRadius,
-    required this.containerTextSize,
-    required this.scrollPosition,
-    required this.circleSize,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = Offset(circleSize / 2, circleSize / 2);
-    final radius = circleSize / 2.2;
-
-    final paint = Paint()..color = containerColor;
-
-    // Draw each number at its position
-    for (int index = 0; index < containerCount; index++) {
-      // Compute the angle for this index, adjusted by scrollPosition
-      final double angle =
-          (2 * math.pi * index) / containerCount + scrollPosition;
-
-      // Calculate the position of the item along the circle's circumference
-      final double itemX = radius * math.cos(angle);
-      final double itemY = radius * math.sin(angle);
-      final Offset itemCenter = center.translate(itemX, itemY);
-
-      // Draw the circle background if necessary (currently transparent)
-      canvas.drawCircle(itemCenter, containerRadius, paint);
-
-      // Save canvas state before rotation
-      canvas.save();
-
-      // Move the canvas to the text position and rotate it inversely to the angle
-      canvas.translate(itemCenter.dx, itemCenter.dy);
-      canvas.rotate(
-          angle + math.pi / 2); // Rotate to face inward towards the center
-
-      // Draw the text at the translated and rotated position
-      final textPainter = TextPainter(
-        text: TextSpan(
-          text: '${indexList[index]}',
-          style: TextStyle(
-            fontSize: containerTextSize,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        textAlign: TextAlign.center,
-        textDirection: TextDirection.ltr,
-      );
-
-      textPainter.layout();
-      textPainter.paint(
-          canvas, Offset(-textPainter.width / 2, -textPainter.height / 2));
-
-      // Restore the canvas state after drawing the text
-      canvas.restore();
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
   }
 }

@@ -90,8 +90,8 @@ class _PraiseSessionState extends State<PraiseSession> {
                           index: index,
                           praise: praise,
                         ).animate().scaleXY(
-                              duration: (0.2 * index).seconds,
-                              delay: (0.1 * index).seconds,
+                              duration: (0.09 * index).seconds,
+                              delay: (0.01 * index).seconds,
                             );
                       },
                     ),
