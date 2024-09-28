@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/seal_form_container.dart';
 
 class ShareButton extends StatelessWidget {
   const ShareButton({
     super.key,
-    required this.widget,
+    required this.isDarkTheme,
   });
 
-  final SealFormContainer widget;
+  final bool isDarkTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class ShareButton extends StatelessWidget {
             width: context.screenWidth * 0.33, //125,
             height: context.screenHeight * 0.04, //30,
             decoration: BoxDecoration(
-              color: widget.isDarkTheme
+              color: isDarkTheme
                   ? AppColors.darkShareContainer
                   : AppColors.lightShareContainer,
               borderRadius: BorderRadius.circular(5),

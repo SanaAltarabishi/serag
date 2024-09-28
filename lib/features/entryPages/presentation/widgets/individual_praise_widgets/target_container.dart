@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
+import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 
 class TargetContainer extends StatelessWidget {
@@ -27,26 +28,29 @@ class TargetContainer extends StatelessWidget {
               child: Text(
                 'target :$topIndexCont',
                 style: TextStyle(
-                  color: Colors.black,
+                  color: AppColors.blackColor,
+                  fontSize: context.screenWidth * 0.04,
                 ),
               ),
             ),
           ),
           Positioned(
-            right: -10,
-            top: -8,
-            child: Image.asset(AppImages.getGroup(isDarkTheme),
-                width: context.screenWidth * 0.12, //50,
-                height: context.screenHeight * 0.062 //50,
-                ),
+            right: -context.screenWidth * 0.02, //-10,
+            top: -context.screenHeight * 0.04, //-8,
+            child: Image.asset(
+              AppImages.getGroup(isDarkTheme),
+              width: context.screenWidth * 0.12, //50,
+              height: context.screenHeight * 0.12, //50,
+             fit: BoxFit.contain,
+            ),
           ),
           Positioned(
-            right: 5,
-            top: 10,
+            right: context.screenWidth * 0.02, //5,
+            top: context.screenHeight * 0.01, //10,
             child: Text(
-              'الهدف',
+              AppStrings.target,
               style: TextStyle(
-                fontSize: 7,
+                fontSize: context.screenWidth * 0.015, //7,
                 fontWeight: FontWeight.w400,
                 color: AppColors.containerColor,
               ),

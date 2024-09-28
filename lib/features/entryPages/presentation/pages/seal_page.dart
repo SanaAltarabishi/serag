@@ -50,7 +50,7 @@ class _SealPageState extends State<SealPage> {
                           index: index,
                           isDarkTheme: isDarkTheme,
                         ).animate().scaleXY(
-                              duration: (0.09 * index).seconds,
+                              duration: (0.12 * index).seconds,
                               delay: (0.01 * index).seconds,
                             );
                       },

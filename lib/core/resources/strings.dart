@@ -21,4 +21,18 @@ class AppStrings {
   static const String praiseSession = 'جلسة ذكر';
   static const String required = 'المفروض';
   static const String residual = 'المنجز';
+  static const String done = 'تم';
+  static const String sessionDone = '!تم انجاز الجلسة بنجاح';
+  static const String tap = 'انقر';
+  static const String target = 'الهدف';
+  static const String istighfar = 'استغفار';
+  static const String salatAlaAlNabi = 'صلاة عالنبي';
+  static const String hawqala = 'حوقلة';
+  static const String basmala = 'بسملة ';
+  static const String tahlil = 'تهليل';
+  static const String takbir = 'تكبير';
+  static const String tasbih = 'تسبيح';
+  static const String dhikr = 'الذكر';
+  static const String durationOfDhiker = 'مدة الذكر';
+  static const String imposedNumber = 'العدد المفروض';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
+import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 
 class CompletedDialog extends StatelessWidget {
@@ -19,38 +20,43 @@ class CompletedDialog extends StatelessWidget {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: context.screenHeight*0.02,),
+            SizedBox(
+              height: context.screenHeight * 0.02,
+            ),
             Image.asset(
               AppImages.employee,
             ),
             SizedBox(
               height: context.screenHeight * 0.02,
             ),
-            const Text(
-              '!تم انجاز الجلسة بنجاح',
+            Text(
+              AppStrings.sessionDone,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: context.screenWidth * 0.05, //20,
                 fontWeight: FontWeight.w400,
-                color: Colors.black,
+                color: AppColors.blackColor,
               ),
             ),
             SizedBox(
               height: context.screenHeight * 0.02,
             ),
-            Divider(
-              color: Colors.black,
+            const Divider(
+              color: AppColors.blackColor,
             ),
             Expanded(
-              child: GestureDetector(
+              child: InkWell(
                 onTap: () {
                   Navigator.pop(context);
                 },
                 child: Center(
-                  child: Text('تم', style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),),
+                  child: Text(
+                    AppStrings.done,
+                    style: TextStyle(
+                      fontSize: context.screenWidth * 0.04, //12
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.blackColor,
+                    ),
+                  ),
                 ),
               ),
             )

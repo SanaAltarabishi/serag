@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
+import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/circlePainter.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/circle_painter.dart';
 
 class StackWheel extends StatelessWidget {
   final List<int> indexList;
@@ -115,32 +116,33 @@ class StackWheel extends StatelessWidget {
                           offset: Offset(-2, -2),
                         ),
                       ],
-                      color: Color(0xffFFF8C7),
+                      color: AppColors.containerColor,
                       shape: BoxShape.circle,
                     ),
                     child: Center(
                       child: (remaining == 0)
-                          ? const Icon(
+                          ? Icon(
                               Icons.rotate_left_rounded,
-                              color: Colors.black,
+                              color: AppColors.blackColor,
+                              size: iconSize * 0.35,
                             )
                           : Text(
-                              'انقر',
+                              AppStrings.tap,
                               style: TextStyle(
                                 fontSize: iconSize *
                                     0.35, //context.screenWidth * 0.04,
-                                color: Colors.black,
+                                color: AppColors.blackColor,
                               ),
                             ),
                     ),
                   ),
                 ),
                 Positioned(
-                  top: -iconSize / 2.5, //-context.screenHeight * 0.02,
+                  top: -iconSize / 2.4, //-context.screenHeight * 0.02,
                   child: Icon(
                     Icons.arrow_drop_down,
                     size: iconSize, //context.screenWidth * 0.08,
-                    color: Colors.black,
+                    color: AppColors.blackColor,
                   ),
                 ),
               ],

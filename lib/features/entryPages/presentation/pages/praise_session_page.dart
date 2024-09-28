@@ -90,7 +90,7 @@ class _PraiseSessionPageState extends State<PraiseSessionPage> {
                           index: index,
                           praise: praise,
                         ).animate().scaleXY(
-                              duration: (0.09 * index).seconds,
+                              duration: (0.12 * index).seconds,
                               delay: (0.01 * index).seconds,
                             );
                       },

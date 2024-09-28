@@ -9,10 +9,10 @@ class RemainingContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 10.0),
+      padding: const EdgeInsets.only(right: 30.0),
       child: Container(
-        width:context.screenWidth*0.25, //112,
-        height:context.screenHeight*0.04, //24,
+        width: context.screenWidth * 0.25, //112,
+        height: context.screenHeight * 0.04, //24,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           color: AppColors.containerColor,
@@ -21,7 +21,7 @@ class RemainingContainer extends StatelessWidget {
           child: Text(
             '$remaining المتبقي',
             style: TextStyle(
-              fontSize: 18,
+              fontSize: context.screenWidth * 0.04, //18,
               fontWeight: FontWeight.w400,
               color: Colors.black,
             ),

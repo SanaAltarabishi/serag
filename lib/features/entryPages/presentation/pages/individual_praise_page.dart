@@ -4,13 +4,13 @@ import 'package:serag/core/theme/app_theme.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 import 'package:serag/core/widgets/custom_app_bar.dart';
 import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/completed_dialog.dart';
-import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/praiseSelectionPageView.dart';
-import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/remainingContainer.dart';
-import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/selectedPraiseContainer.dart';
-import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/stackWheel.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/praise_selection_page_view.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/remaining_container.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/selected_praise_container.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/stack_wheel.dart';
 import 'dart:async';
 import 'dart:math' as math;
-import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/targetContainer.dart';
+import 'package:serag/features/entryPages/presentation/widgets/individual_praise_widgets/target_container.dart';
 
 class IndividualPraisePage extends StatefulWidget {
   const IndividualPraisePage({super.key});

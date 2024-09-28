@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/seal_form_container.dart';
 
 class AddButton extends StatelessWidget {
   const AddButton({
     super.key,
-    required this.widget,
+    required this.isDarkTheme,
   });
 
-  final SealFormContainer widget;
+  final bool isDarkTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class AddButton extends StatelessWidget {
           child: Text(
             AppStrings.add,
             style: TextStyle(
-              color: widget.isDarkTheme
+              color: isDarkTheme
                   ? AppColors.darkDialog
                   : AppColors.lightGradientEnd,
               fontSize: context.screenWidth * 0.06, //25,

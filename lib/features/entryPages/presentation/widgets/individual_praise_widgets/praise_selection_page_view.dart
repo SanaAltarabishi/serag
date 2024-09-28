@@ -38,9 +38,8 @@ class PraiseSelectionPageView extends StatelessWidget {
           return Transform.scale(
             scale: scale,
             child: Container(
-              width: 280,
-              height: 170,
-              // margin: const EdgeInsets.symmetric(horizontal: 10),
+              width: context.screenWidth * 0.8, //330, // width: 280,
+              height: context.screenHeight * 0.25, //170,
               decoration: BoxDecoration(
                 color: containerColor,
                 borderRadius: BorderRadius.circular(18),
@@ -51,7 +50,7 @@ class PraiseSelectionPageView extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
-                    fontSize: 30,
+                    fontSize: context.screenWidth * 0.08, //30,
                     color: AppColors.whiteColor,
                   ),
                 ),

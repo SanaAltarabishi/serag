@@ -3,10 +3,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/add_button.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/custom_date_range_picker.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/custom_drop_down_field.dart';
-import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/share_button.dart';
+import 'package:serag/core/widgets/date_range_dialog.dart';
+import 'package:serag/core/widgets/add_button.dart';
+import 'package:serag/core/widgets/custom_date_range_picker.dart';
+import 'package:serag/core/widgets/custom_drop_down_field.dart';
+import 'package:serag/core/widgets/share_button.dart';
 
 class SealFormContainer extends StatefulWidget {
   final bool isDarkTheme;
@@ -37,35 +38,9 @@ class _SealFormContainerState extends State<SealFormContainer> {
       lastDate: DateTime(2101),
       initialDateRange: _selectedDateRange,
       builder: (BuildContext context, Widget? child) {
-        return Dialog(
-          insetPadding:
-              const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-                maxWidth: context.screenWidth * 0.8, // 300,
-                maxHeight: context.screenHeight * 0.7 //530,
-                ),
-            child: Theme(
-              data: ThemeData(
-                colorScheme: isDarkTheme
-                    ? ColorScheme.dark(
-                        primary: AppColors.darkGradientStart,
-                        onPrimary: AppColors.whiteColor,
-                        surface: AppColors.whiteColor,
-                        onSurface: Colors.black,
-                        secondary: AppColors.darkGradientStart.withOpacity(0.2),
-                      )
-                    : ColorScheme.light(
-                        primary: AppColors.lightGradientEnd,
-                        onPrimary: AppColors.whiteColor,
-                        surface: AppColors.whiteColor,
-                        onSurface: Colors.black,
-                        secondary: AppColors.lightGradientEnd.withOpacity(0.2),
-                      ),
-              ),
-              child: child!,
-            ),
-          ),
+        return DateRangeDialog(
+          isDarkTheme: isDarkTheme,
+          child: child!,
         );
       },
     );
@@ -142,13 +117,13 @@ class _SealFormContainerState extends State<SealFormContainer> {
           SizedBox(
             height: context.screenHeight * 0.02,
           ),
-          ShareButton(widget: widget)
-              .animate()
-              .fade(duration: 1.3.seconds, delay: .6.seconds),
+          ShareButton(
+            isDarkTheme: widget.isDarkTheme,
+          ).animate().fade(duration: 1.3.seconds, delay: .6.seconds),
           SizedBox(
             height: context.screenHeight * 0.04,
           ),
-          AddButton(widget: widget)
+          AddButton(isDarkTheme: widget.isDarkTheme)
               .animate()
               .fade(duration: 1.5.seconds, delay: .7.seconds),
           SizedBox(
