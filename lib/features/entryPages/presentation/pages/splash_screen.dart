@@ -55,16 +55,16 @@ class _SplashScreenState extends State<SplashScreen>
     final themeProvider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       //  backgroundColor: Theme.of(context).primaryColor,
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            icon: Icon(Icons.brightness_6),
-            onPressed: () {
-              themeProvider.toggleTheme(); // Toggle between light and dark mode
-            },
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   actions: [
+      //     IconButton(
+      //       icon: Icon(Icons.brightness_6),
+      //       onPressed: () {
+      //         themeProvider.toggleTheme(); // Toggle between light and dark mode
+      //       },
+      //     ),
+      //   ],
+      // ),
       body: Stack(
         fit: StackFit.expand,
         children: [

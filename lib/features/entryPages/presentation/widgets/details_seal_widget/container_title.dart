@@ -18,7 +18,8 @@ class TitleContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Padding(
+      padding: EdgeInsets.only(right: context.screenWidth * 0.04),
       child: Stack(
         clipBehavior: Clip.none,
         children: [

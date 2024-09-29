@@ -136,12 +136,12 @@ class _PraiseFormContainerState extends State<PraiseFormContainer> {
               thumbColor: AppColors.containerColor,
               activeColor: widget.isDarkTheme
                   ? AppColors.darkShareContainer
-                  : AppColors.lightGradientMiddle3,
+                  : AppColors.lightShareContainer,
               value: _sliderValue,
               min: 0,
               max: 20,
               divisions: 20,
-              label: 'Value:${_calculateValue(_sliderValue)}',
+              label: '${_calculateValue(_sliderValue)}',
               onChanged: (value) {
                 setState(() {
                   _sliderValue = value;

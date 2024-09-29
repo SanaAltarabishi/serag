@@ -23,6 +23,7 @@ class DetailsSealPage extends StatelessWidget {
         ),
         child: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 height: context.screenHeight * 0.02,

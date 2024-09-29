@@ -111,6 +111,7 @@ class _IndividualPraisePageState extends State<IndividualPraisePage> {
                 height: context.screenHeight * 0.03,
               ),
               StackWheel(
+                isDarkTheme: isDarkTheme,
                 indexList: indexList,
                 scrollPosition: scrollPosition,
                 remaining: remaining,

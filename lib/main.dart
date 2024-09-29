@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: themeProvider.currentTheme,
       themeMode: ThemeMode.system, //! ?
-      routerDelegate: AppRouter.router.routerDelegate,
-      routeInformationParser: AppRouter.router.routeInformationParser,
-      routeInformationProvider: AppRouter.router.routeInformationProvider,
+       routerDelegate: AppRouter.router.routerDelegate,
+       routeInformationParser: AppRouter.router.routeInformationParser,
+       routeInformationProvider: AppRouter.router.routeInformationProvider,
       // home: const SplashScreen(),
     );
   }
