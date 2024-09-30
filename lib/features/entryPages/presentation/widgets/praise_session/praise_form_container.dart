@@ -84,7 +84,7 @@ class _PraiseFormContainerState extends State<PraiseFormContainer> {
               fontWeight: FontWeight.w400,
               fontSize: context.screenWidth * 0.05,
             ),
-          ).animate().fade(duration: 0.3.seconds, delay: .1.seconds),
+          ).animate().fade(duration: 0.2.seconds, delay: .1.seconds),
           SizedBox(
             height: context.screenHeight * 0.02,
           ),
@@ -95,7 +95,7 @@ class _PraiseFormContainerState extends State<PraiseFormContainer> {
                 setState(() {
                   selectedValue = newValue;
                 });
-              }).animate().fade(duration: 0.5.seconds, delay: .2.seconds),
+              }).animate().fade(duration: 0.4.seconds, delay: .15.seconds),
           SizedBox(
             height: context.screenHeight * 0.02,
           ),
@@ -107,14 +107,14 @@ class _PraiseFormContainerState extends State<PraiseFormContainer> {
               fontWeight: FontWeight.w400,
               fontSize: context.screenWidth * 0.05,
             ),
-          ).animate().fade(duration: 0.7.seconds, delay: .3.seconds),
+          ).animate().fade(duration: 0.6.seconds, delay: .2.seconds),
           SizedBox(
             height: context.screenHeight * 0.02,
           ),
           CustomDateRangePicker(
             onTap: () => _selectRange(context, widget.isDarkTheme),
             selectedDateRange: _selectDateRange,
-          ).animate().fade(duration: 0.9.seconds, delay: .4.seconds),
+          ).animate().fade(duration: 0.8.seconds, delay: .25.seconds),
           SizedBox(
             height: context.screenHeight * 0.015,
           ),
@@ -126,7 +126,7 @@ class _PraiseFormContainerState extends State<PraiseFormContainer> {
               fontWeight: FontWeight.w400,
               fontSize: context.screenWidth * 0.05,
             ),
-          ).animate().fade(duration: 1.3.seconds, delay: .6.seconds),
+          ).animate().fade(duration: 1.seconds, delay: .3.seconds),
           SliderTheme(
             data: SliderTheme.of(context).copyWith(
                 valueIndicatorTextStyle:
@@ -147,17 +147,17 @@ class _PraiseFormContainerState extends State<PraiseFormContainer> {
                   _sliderValue = value;
                 });
               },
-            ).animate().fade(duration: 1.5.seconds, delay: .7.seconds),
+            ).animate().fade(duration: 1.2.seconds, delay: .35.seconds),
           ),
           ShareButton(
             isDarkTheme: widget.isDarkTheme,
-          ).animate().fade(duration: 1.7.seconds, delay: .8.seconds),
+          ).animate().fade(duration: 1.4.seconds, delay: .4.seconds),
           SizedBox(
             height: context.screenHeight * 0.04,
           ),
           AddButton(isDarkTheme: widget.isDarkTheme)
               .animate()
-              .fade(duration: 1.9.seconds, delay: 1.seconds),
+              .fade(duration: 1.6.seconds, delay: .45.seconds),
           SizedBox(
             height: context.screenHeight * 0.02,
           )

@@ -5,7 +5,7 @@ import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/app_theme.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 import 'package:serag/core/widgets/custom_app_bar.dart';
-import 'package:serag/features/entryPages/models/praiseSession_model.dart';
+import 'package:serag/features/entryPages/models/praise_session_model.dart';
 import 'package:serag/features/entryPages/presentation/widgets/praise_session/praise_card.dart';
 import 'package:serag/features/entryPages/presentation/widgets/praise_session/praise_form_container.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/custom_floating_action_button.dart';

@@ -4,7 +4,7 @@ import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 import 'package:serag/core/widgets/start_end_row.dart';
-import 'package:serag/features/entryPages/models/praiseSession_model.dart';
+import 'package:serag/features/entryPages/models/praise_session_model.dart';
 import 'package:serag/features/entryPages/presentation/widgets/praise_session/residual_required_row.dart';
 
 class PraiseCard extends StatelessWidget {
