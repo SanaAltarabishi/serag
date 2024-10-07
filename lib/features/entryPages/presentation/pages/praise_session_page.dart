@@ -5,7 +5,7 @@ import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/app_theme.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 import 'package:serag/core/widgets/custom_app_bar.dart';
-import 'package:serag/features/entryPages/models/praise_session_model.dart';
+import 'package:serag/features/entryPages/data/praise_session_data.dart';
 import 'package:serag/features/entryPages/presentation/widgets/praise_session/praise_card.dart';
 import 'package:serag/features/entryPages/presentation/widgets/praise_session/praise_form_container.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/custom_floating_action_button.dart';
@@ -22,43 +22,7 @@ class _PraiseSessionPageState extends State<PraiseSessionPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<PraiseSessionModel> praise = [
-      PraiseSessionModel(
-        title: 'صلاة عالنبي ',
-        startTime: '15/1/2020',
-        endTime: '19/1/2020',
-        required: 10000,
-        residual: 200,
-      ),
-      PraiseSessionModel(
-        title: 'استغفار',
-        startTime: '15/1/2020',
-        endTime: '19/1/2020',
-        required: 10000,
-        residual: 200,
-      ),
-      PraiseSessionModel(
-        title: 'حوقلة',
-        startTime: '15/1/2020',
-        endTime: '21/1/2020',
-        required: 10000,
-        residual: 200,
-      ),
-      PraiseSessionModel(
-        title: 'استغفار',
-        startTime: '15/1/2020',
-        endTime: '19/1/2020',
-        required: 10000,
-        residual: 200,
-      ),
-      PraiseSessionModel(
-        title: 'استغفار',
-        startTime: '15/1/2020',
-        endTime: '30/1/2020',
-        required: 10000,
-        residual: 200,
-      ),
-    ];
+
 
     final isDarkTheme = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
@@ -83,12 +47,12 @@ class _PraiseSessionPageState extends State<PraiseSessionPage> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: praise.length,
+                      itemCount: getListPraise().length,
                       itemBuilder: (context, index) {
                         return PraiseCard(
                           isDarkTheme: isDarkTheme,
                           index: index,
-                          praise: praise,
+                          praise:getListPraise()// praise,
                         ).animate().scaleXY(
                               duration: (0.12 * index).seconds,
                               delay: (0.01 * index).seconds,

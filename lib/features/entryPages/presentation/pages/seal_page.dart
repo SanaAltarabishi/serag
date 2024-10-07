@@ -4,6 +4,7 @@ import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/app_theme.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
+import 'package:serag/features/entryPages/data/seal_data.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/card_seals.dart';
 import 'package:serag/features/entryPages/presentation/widgets/seal_page_widgets/custom_floating_action_button.dart';
 import 'package:serag/core/widgets/custom_app_bar.dart';
@@ -44,9 +45,10 @@ class _SealPageState extends State<SealPage> {
                   ),
                   Flexible(
                     child: ListView.builder(
-                      itemCount: 4,
+                      itemCount: getSeal().length,
                       itemBuilder: (context, index) {
                         return CardSeals(
+                          seal:getSeal(),
                           index: index,
                           isDarkTheme: isDarkTheme,
                         ).animate().scaleXY(

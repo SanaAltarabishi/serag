@@ -5,19 +5,21 @@ import 'package:serag/core/resources/colors.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 import 'package:serag/core/widgets/start_end_row.dart';
+import 'package:serag/features/entryPages/models/seal_model.dart';
 
 class CardSeals extends StatelessWidget {
   final bool isDarkTheme;
   final int index;
+  final List<SealModel> seal;
   const CardSeals({
     super.key,
     required this.isDarkTheme,
-    required this.index,
+    required this.index, required this.seal,
   });
 
   @override
   Widget build(BuildContext context) {
-    final String sealTitle = 'ختمة بنية الشفاء ';
+    // final String sealTitle = 'ختمة بنية الشفاء ';
     return InkWell(
       onTap: () {
         // Navigator.push(
@@ -30,10 +32,9 @@ class CardSeals extends StatelessWidget {
         //     type: PageTransitionType.fade,
         //   ),
         // );
-        context.push(
-          '/details/$index',
-          extra: sealTitle,
-        );
+        context.push('/details/$index',
+            extra: seal[index].sealTitle //sealTitle,
+            );
       },
       child: Container(
         margin: EdgeInsets.symmetric(
@@ -64,7 +65,8 @@ class CardSeals extends StatelessWidget {
                     width: context.screenWidth * 0.01,
                   ),
                   Text(
-                    sealTitle, //data cames form back !
+                    seal[index]
+                        .sealTitle, // sealTitle, //data cames form back !
                     style: TextStyle(
                         fontSize: context.screenWidth * 0.06,
                         fontWeight: FontWeight.w400,
@@ -100,8 +102,8 @@ class CardSeals extends StatelessWidget {
               ).animate().fade(duration: 0.5.seconds, delay: 0.2.seconds),
               StartAndEndRow(
                 isDarkTheme: isDarkTheme,
-                startTime: '3/3/2024',
-                endTime: '3/3/2024',
+                startTime: seal[index].startTime,
+                endTime: seal[index].endTime,
               ).animate().fade(duration: 0.7.seconds, delay: 0.3.seconds)
             ],
           ),

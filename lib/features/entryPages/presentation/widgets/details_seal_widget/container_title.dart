@@ -36,9 +36,11 @@ class TitleContainer extends StatelessWidget {
                 style: TextStyle(
                   color:
                       isDarkTheme ? AppColors.darkDialog : AppColors.lightTitle,
-                  fontSize: context.screenHeight * 0.035, //25,
                   fontWeight: FontWeight.w400,
-                ),
+                  fontSize: sealTitle.split(' ').length > 3
+                      ? context.screenHeight * 0.025
+                      : context.screenHeight * 0.035, //25,
+              ),
               ),
             ).animate().fade(duration: 0.2.seconds, delay: 0.15.seconds),
           ),
