@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+//! the way to test changes:
+//  static Color get lightGradientStart1 {
+//     return FlavorConfig.current == FlavorConfig.staging
+//         ? const Color(0xff001E42) // Staging color
+//         : const Color(0xffFBCB8F); // Production color
+//   }
+
 //light (day) theme :
 
   static const Color lightGradientStart1 = Color(0xffFBCB8F);

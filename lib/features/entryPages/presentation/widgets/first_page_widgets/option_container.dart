@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:serag/core/resources/colors.dart';
+import 'package:serag/core/resources/fonts.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 
 
@@ -43,7 +44,7 @@ class OptionContainer extends StatelessWidget {
               text,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontFamily: 'ElMessiri',
+                fontFamily:  AppFonts.getFontFamily(),
                 fontSize: context.screenWidth * 0.03,
                 color: isDarkTheme
                     ? AppColors.darkDialog

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:serag/core/resources/colors.dart';
+import 'package:serag/core/resources/fonts.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/utils/build_context_extensions.dart';
 
@@ -31,7 +32,7 @@ class TitleRow extends StatelessWidget {
            text,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontFamily: 'ElMessiri',
+                fontFamily:  AppFonts.getFontFamily(),
                 fontWeight: FontWeight.w400,
                 fontSize: context.screenWidth * 0.06,
                 color: isDarkTheme ? AppColors.darkTitle : AppColors.lightTitle),

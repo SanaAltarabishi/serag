@@ -97,7 +97,7 @@ class StackWheel extends StatelessWidget {
                         child: Container(
                           width: context.screenHeight * 0.3, //212
                           height: context.screenHeight * 0.3,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
                                 AppImages.mandala,

@@ -3,12 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:serag/core/navigation/app_router.dart';
 import 'package:serag/core/theme/theme_provider.dart';
 
-void main() {
-  runApp(ChangeNotifierProvider(
-    create: (_) => ThemeProvider()..updateThemeBaseOnTime(),
-    child: const MyApp(),
-  ));
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

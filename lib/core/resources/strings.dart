@@ -1,4 +1,9 @@
 class AppStrings {
+  //  static String get appTitle {
+//     return FlavorConfig.current == FlavorConfig.staging
+//         ?'taspeh' // Staging color
+//         : 'تسبيح'; // Production color
+//   }
   static const String appTitle = 'سراج';
   static const String praise = 'تسبيح';
   static const String surah = 'سورة';

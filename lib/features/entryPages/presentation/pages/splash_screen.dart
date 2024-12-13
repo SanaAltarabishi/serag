@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:serag/core/resources/colors.dart';
+import 'package:serag/core/resources/fonts.dart';
 import 'package:serag/core/resources/images.dart';
 import 'package:serag/core/resources/strings.dart';
 import 'package:serag/core/theme/theme_provider.dart';
@@ -85,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen>
                   textDirection: TextDirection.ltr,
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
-                    fontFamily: 'ElMessiri',
+                    fontFamily: AppFonts.getFontFamily(),
                     fontSize: context.screenWidth * 0.15,
                     fontWeight: FontWeight.w900,
                     shadows: [
