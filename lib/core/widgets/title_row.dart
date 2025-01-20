@@ -8,7 +8,8 @@ class TitleRow extends StatelessWidget {
   final String text;
   const TitleRow({
     super.key,
-    required this.isDarkTheme, required this.text,
+    required this.isDarkTheme,
+    required this.text,
   });
 
   final bool isDarkTheme;
@@ -16,7 +17,7 @@ class TitleRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(left: context.screenWidth*0.05),
+      padding: EdgeInsets.only(left: context.screenWidth * 0.05),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -29,13 +30,14 @@ class TitleRow extends StatelessWidget {
             ),
           ),
           Text(
-           text,
+            text,
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontFamily:  AppFonts.getFontFamily(),
+                fontFamily: AppFonts.getFontFamily(),
                 fontWeight: FontWeight.w400,
                 fontSize: context.screenWidth * 0.06,
-                color: isDarkTheme ? AppColors.darkTitle : AppColors.lightTitle),
+                color:
+                    isDarkTheme ? AppColors.darkTitle : AppColors.lightTitle),
           ),
           SizedBox(
             width: context.screenWidth * 0.05,
